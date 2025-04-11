@@ -39,7 +39,7 @@ CWARNSC= -Wdeclaration-after-statement \
 	-Wold-style-definition \
 
 
-CWARNS= $(CWARNSCPP) $(CWARNSC) $(CWARNGCC)
+CWARNS= $(CWARNSCPP) $(CWARNSC) # $(CWARNGCC)
 
 # Some useful compiler options for internal tests:
 # -DLUAI_ASSERT turns on all assertions inside Lua.
@@ -71,12 +71,12 @@ LOCAL = $(TESTS) $(CWARNS)
 # To enable Linux goodies, -DLUA_USE_LINUX
 # For C89, "-std=c89 -DLUA_USE_C89"
 # Note that Linux/Posix options are not compatible with C89
-MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX
-MYLDFLAGS= $(LOCAL) -Wl,-E
+MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_MACOSX #-DLUA_USE_LINUX
+MYLDFLAGS= $(LOCAL) -Wl #,-E
 MYLIBS= -ldl
 
 
-CC= gcc
+CC= clang
 CFLAGS= -Wall -O2 $(MYCFLAGS) -fno-stack-protector -fno-common -march=native
 AR= ar rc
 RANLIB= ranlib
